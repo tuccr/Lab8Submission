@@ -145,6 +145,7 @@ void printArray(int pData[], int dataSz)
 }
 */
 
+// original printArray doesn't work so I fixed it
 void printArray(int pData[], int dataSz) {
 	int i, sz = dataSz - 100;
 	printf("\tData:\n\t");
