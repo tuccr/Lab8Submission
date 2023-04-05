@@ -32,7 +32,7 @@ void heapify(int arr[], int n, int i) {
 // extraMemoryAllocated counts bytes of memory allocated
 void heapSort(int arr[], int n)
 {
-	for(int i = n; ((i/2)-1) < 0; i--) {
+	for(int i = ((n/2)-1); i >= 0; i--) {
 		heapify(arr, n, i);
 	}
 	for(int i = n-1; i >= 0; i--) {
