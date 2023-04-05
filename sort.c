@@ -1,8 +1,15 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 int extraMemoryAllocated;
+
+void swap(int * x, int * y) {
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
 
 void heapify(int arr[], int n, int i) {
 	int Lrg = i;
@@ -14,7 +21,7 @@ void heapify(int arr[], int n, int i) {
 	if(r < n && arr[r] > arr[Lrg]) {
 		Lrg = r;
 	}
-	//Swap and continue heapifying if root is not largest
+	// Swap and continue heapifying if root is not largest
 	if(Lrg != i) {
 		swap(&arr[i], &arr[Lrg]);
 		heapify(arr, n, Lrg);
@@ -25,12 +32,12 @@ void heapify(int arr[], int n, int i) {
 // extraMemoryAllocated counts bytes of memory allocated
 void heapSort(int arr[], int n)
 {
-	for(int i = n; ((i/2)-1)<0; i--) {
+	for(int i = n; ((i/2)-1) < 0; i--) {
 		heapify(arr, n, i);
 	}
-	for(int i = n-1; i > 0; i--) {
-		swap();
-		heapify(arr, n, i);
+	for(int i = n-1; i >= 0; i--) {
+		swap(&arr[0], &arr[i]);
+		heapify(arr, i, 0);
 	}
 }
 
@@ -119,6 +126,7 @@ int parseData(char *inputFileName, int **ppData)
 }
 
 // prints first and last 100 items in the data array
+/*
 void printArray(int pData[], int dataSz)
 {
 	int i, sz = dataSz - 100;
@@ -134,6 +142,32 @@ void printArray(int pData[], int dataSz)
 		printf("%d ",pData[i]);
 	}
 	printf("\n\n");
+}
+*/
+
+void printArray(int pData[], int dataSz) {
+	int i, sz = dataSz - 100;
+	printf("\tData:\n\t");
+	if(dataSz < 100) {
+		for (i = 0; i < dataSz; ++i)
+		{
+			printf("%d ",pData[i]);
+		}
+		printf("\n");
+	}
+	else {
+		for (i=0;i<100;++i)
+		{
+			printf("%d ",pData[i]);
+		}
+		printf("\n\t");
+	
+		for (i=sz;i<dataSz;++i)
+		{
+			printf("%d ",pData[i]);
+		}
+		printf("\n\n");
+	}
 }
 
 int main(void)
